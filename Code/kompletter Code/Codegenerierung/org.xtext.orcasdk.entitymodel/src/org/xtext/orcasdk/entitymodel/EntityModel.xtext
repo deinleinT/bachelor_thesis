@@ -1,0 +1,39 @@
+grammar org.xtext.orcasdk.entitymodel.EntityModel with org.eclipse.xtext.common.Terminals
+
+generate entityModel "http://www.xtext.org/orcasdk/entitymodel/EntityModel"
+
+Model:
+	appconstants=AppConstants?;
+
+AppConstants:
+	'appconstants {'
+		'appname = ' valueappname+=(STRING)*';'
+		'apikey = ' valueapikey+=(STRING)*';'
+	'}'
+	packageentities+=Packages+
+;	
+
+Packages:
+	'package' name=QualifiedName'{'
+   		 entities+=AndroidEntity+
+	'}'
+;
+
+QualifiedName:
+	ID('.'ID)*
+;
+
+AndroidEntity: 
+	'entity' name = ID '{'
+		'TYPE = ' value+=(INT)+';'
+		attributes += AndroidAttribute+
+	'}'
+;
+
+AndroidAttribute:
+	((type='string' name=ID';') | (type='boolean' name=ID';')  | (type='long' name=ID';') | (type='double' name=ID';') | (type='double[]' name=ID';') | (type='date' name=ID';') | (type='image' name=ID';') | (type='link' name=ID objectType=[AndroidEntity] '{'linkproperties+=LinkProperties+'}')) 
+;
+
+LinkProperties:
+	((type='string' name=ID';') | (type='boolean' name=ID';')  | (type='long' name=ID';') | (type='double' name=ID';') | (type='double[]' name=ID';') | (type='date' name=ID';'))
+;

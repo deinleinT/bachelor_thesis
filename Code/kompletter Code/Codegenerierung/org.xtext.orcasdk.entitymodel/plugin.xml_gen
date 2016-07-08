@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.xtext.org/orcasdk/entitymodel/EntityModel" 
+       class = "org.xtext.orcasdk.entitymodel.entityModel.EntityModelPackage"
+       genModel = "model/generated/EntityModel.genmodel" /> 
+	
+  </extension>
+
+
+
+</plugin>
